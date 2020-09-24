@@ -20,7 +20,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    depends_on: 
+    depends_on:
       - node
     networks:
       - app-network
@@ -37,20 +37,20 @@ services:
       - "3000:3000"
     networks:
       - app-network
-      
+
   # Disabled in case someone is running this on Windows (OK to uncomment if on Mac/Linux)
-  # cadvisor:
-  #   container_name: cadvisor
-  #   image: google/cadvisor
-  #   volumes:
-  #     - /:/rootfs:ro
-  #     - /var/run:/var/run:rw
-  #     - /sys:/sys:ro
-  #     - /var/lib/docker/:/var/lib/docker:ro
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - app-network
+  cadvisor:
+    container_name: cadvisor
+    image: google/cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
 
 networks:
   app-network:
